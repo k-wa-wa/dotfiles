@@ -1,0 +1,9 @@
+FROM ubuntu:24.04
+
+RUN apt update && apt -y upgrade
+RUN apt install -y git curl
+
+
+RUN curl -sL https://github.com/k-wa-wa/dotfiles/raw/refs/heads/master/install.sh | sh
+
+CMD [ "zsh", "-c", "echo done" ]
