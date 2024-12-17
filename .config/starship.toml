@@ -1,0 +1,78 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$username\
+$hostname\
+\n\
+$container\
+$character
+"""
+
+right_format = """
+$cmd_duration\
+$memory_usage\
+$time
+"""
+
+[username]
+show_always = true
+style_root = 'bright-black'
+style_user = 'bright-black'
+format = '[$user]($style)'
+disabled = false
+
+[hostname]
+ssh_only = false
+style = 'bright-black'
+format = '[@$hostname]($style) '
+disabled = false
+
+[directory]
+truncation_length = 5
+truncation_symbol = ".../"
+truncate_to_repo = false
+style = '#57C7FF'
+
+[container]
+format = '[\[$name\]]($style) '
+disabled = false
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[❯](red)"
+
+[git_branch]
+format = '[$branch]($style)'
+style = "bright-black"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[fill]
+symbol = ' '
+
+[cmd_duration]
+min_time = 1
+format = ' [$duration]($style) '
+
+[time]
+disabled = false
+style = 'fg:#73daca'
+time_format = "%T"
+format = ' [$time]($style) '
+
+[memory_usage]
+disabled = false
+threshold = -1
+style = "bold dimmed blue"
+format = '[RAM ${ram_pct}( | SWAP ${swap_pct})]($style) '
