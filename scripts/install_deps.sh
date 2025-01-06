@@ -4,14 +4,15 @@ set -e
 
 if command -v apt &> /dev/null; then
   sudo apt update
-  sudo apt install -y software-properties-common
-  sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
-  sudo apt update
 
   sudo apt install -y \
-      zsh build-essential \
-      neovim fzf \
-      fastfetch
+      zsh build-essential tar \
+      neovim fzf
+
+  # fastfetch TODO: アーキテクチャ等の分岐
+  wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.33.0/fastfetch-linux-amd64.tar.gz
+  tar -xzvf fastfetch-linux-amd64.tar.gz
+  sudo cp -f fastfetch-linux-amd64/usr/bin/fastfetch /usr/local/bin/
 else
   echo "Not implemented. Please install deps yourself."
 fi
