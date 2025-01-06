@@ -31,31 +31,18 @@ eval "$(starship init zsh)"
 ########## history
 ##############################
 ## 履歴保存管理
+HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=1000000
 
-# 重複を記録しない
-setopt hist_ignore_dups
-
-## パスを直接入力してもcdする
-setopt auto_cd
-## cd履歴を保存
-setopt auto_pushd
-
-## 環境変数を補完
-setopt AUTO_PARAM_KEYS
-
-# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
-setopt hist_ignore_all_dups
-
-# 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-
-# 補完時にヒストリを自動的に展開
-setopt hist_expand
-
-# aliasでも補完
-setopt complete_aliases
+setopt hist_ignore_dups # 重複を記録しない
+setopt auto_cd # パスを直接入力してもcdする
+setopt auto_pushd # cd履歴を保存
+setopt AUTO_PARAM_KEYS # 環境変数を補完
+setopt hist_ignore_all_dups # ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
+setopt hist_reduce_blanks # 余分な空白は詰めて記録
+setopt hist_expand # 補完時にヒストリを自動的に展開
+setopt complete_aliases # aliasでも補完
 
 # 上下矢印で履歴検索する。ターミナルによってキーバインドが効かない場合があるため、shift+上下矢印も設定しておく
 bindkey '\e[A' history-search-backward
