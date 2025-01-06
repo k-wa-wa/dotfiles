@@ -3,8 +3,9 @@
 set -e
 
 sudo apt install -y \
-    zsh lsd build-essential \
+    zsh cargo build-essential \
     neovim fzf
+cargo install lsd
 
 # zinit
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
