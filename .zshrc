@@ -28,18 +28,9 @@ zinit light zsh-users/zsh-completions
 eval "$(starship init zsh)"
 
 ##############################
-########## alias
-##############################
-alias ls='lsd'
-alias ll='lsd -l'
-alias la='lsd -a'
-alias lla='lsd -la'
-
-##############################
 ########## history
 ##############################
 ## 履歴保存管理
-HISTFILE=~/.zsh-history
 HISTSIZE=100000
 SAVEHIST=1000000
 
@@ -66,18 +57,11 @@ setopt hist_expand
 # aliasでも補完
 setopt complete_aliases
 
-# 上矢印キーで履歴検索を前に
-autoload -Uz up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-bindkey '^P' up-line-or-beginning-search
-# 下矢印キーで履歴検索を後に
-autoload -Uz down-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '^N' down-line-or-beginning-search
-# 上矢印キー
+# 上下矢印で履歴検索する。ターミナルによってキーバインドが効かない場合があるため、shift+上下矢印も設定しておく
 bindkey '\e[A' history-search-backward
-# 下矢印キー
+bindkey '^[[1;2A' history-search-backward
 bindkey '\e[B' history-search-forward
+bindkey '^[[1;2B' history-search-forward
 
 # 補完機能を有効にする
 autoload -Uz compinit && compinit
@@ -85,6 +69,16 @@ autoload -Uz compinit && compinit
 # 小文字でも大文字ディレクトリ、ファイルを補完できるようにする
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-export PATH='$HOME/.cargo/bin:$PATH'
+export PATH=$HOME/.cargo/bin:$PATH
+
+##############################
+########## alias
+##############################
+alias ls='lsd'
+alias ll='lsd -l'
+alias la='lsd -a'
+alias lla='lsd -la'
+
+alias g='git'
 
 fastfetch
