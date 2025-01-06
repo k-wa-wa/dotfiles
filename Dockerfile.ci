@@ -1,9 +1,17 @@
-FROM ubuntu:24.04
+ARG BASE_IMAGE=ubuntu:24.04
+FROM ${BASE_IMAGE}
 
 RUN apt update && apt -y upgrade
 RUN apt install -y git curl sudo
 
+RUN useradd -m testuser \
+  && usermod -aG sudo testuser \
+  && echo "testuser ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/testuser
+
+# setup.shを流す
+USER testuser
 
 RUN curl -sL https://github.com/k-wa-wa/dotfiles/raw/refs/heads/master/install.sh | sh
 
-CMD [ "zsh", "-c", "echo done" ]
+WORKDIR /home/testuser
+CMD [ "zsh", "-i", "-c", "echo done" ]
