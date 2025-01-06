@@ -1,5 +1,7 @@
 #/bin/sh
 
+set -e
+
 DOTFILES_DIR=~/.dotfiles
 
 if [ ! -d ${DOTFILES_DIR} ]; then
